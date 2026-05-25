@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHULAITEMS - cUtems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cu-bg-main': '#FFFDF9',     /* สีครีมสว่าง */
+                        'cu-bg-outer': '#FBCFE8',    /* สีชมพูพาสเทลขอบนอกจอ */
+                        'cu-brown-dark': '#745E6D',  /* สีน้ำตาลเข้มแถบเมนูและป้าย */
+                        'cu-brown-soft': '#7A6374',   /* สีน้ำตาลอ่อนขอบปุ่ม */
+                        'cu-pink-dot': '#F472B6',    /* สีชมพูข้าวหลามตัด */
+                        'cu-pink-btn': '#D1A3B1',    /* สีชมพูหม่นปุ่ม Details */
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Prompt', sans-serif; font-weight: 300; }
+        #side-menu { transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+        .menu-open #side-menu { transform: translateX(0) !important; }
+        #menu-overlay { transition: opacity 0.35s ease; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-cu-bg-outer min-h-screen flex justify-center items-center md:py-8 select-none menu-closed">
+
+    <div class="w-full max-w-[430px] min-h-[920px] max-h-[920px] bg-cu-bg-main relative flex flex-col shadow-2xl rounded-[40px] overflow-hidden border-[6px] border-white">
+        
+        <div id="menu-overlay" class="absolute inset-0 bg-black/30 z-40 hidden opacity-0"></div>
+
+        <div id="side-menu" class="absolute inset-y-0 left-0 z-50 w-[75%] bg-cu-brown-dark flex flex-col p-6 shadow-2xl transform -translate-x-full">
+            <div class="flex justify-end mb-6">
+                <button id="close-menu-btn" class="text-white hover:scale-110 active:scale-95 transition-all p-1 cursor-pointer">
+                    <i data-lucide="x" class="w-9 h-9" stroke-width="2.2"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-4">
+                <button id="menu-home-btn" class="w-full border-[2.5px] border-white bg-transparent rounded-xl p-3 flex items-center gap-4 text-white font-bold text-sm tracking-widest hover:bg-white hover:text-cu-brown-dark transition-all cursor-pointer">
+                    <div class="w-8 flex justify-center"><i data-lucide="home" class="w-5 h-5"></i></div>
+                    <span>HOME</span>
+                </button>
+                <button id="menu-discount-btn" class="w-full border-[2.5px] border-white bg-transparent rounded-xl p-3 flex items-center gap-4 text-white font-bold text-sm tracking-widest hover:bg-white hover:text-cu-brown-dark transition-all cursor-pointer">
+                    <div class="w-8 flex justify-center"><i data-lucide="ticket" class="w-5 h-5"></i></div>
+                    <span>DISCOUNT CODE</span>
+                </button>
+                <button id="menu-jersey-btn" class="w-full border-[2.5px] border-white bg-transparent rounded-xl p-3 flex items-center gap-4 text-white font-bold text-sm tracking-widest hover:bg-white hover:text-cu-brown-dark transition-all cursor-pointer">
+                    <div class="w-8 flex justify-center"><i data-lucide="shopping-cart" class="w-5 h-5"></i></div>
+                    <span>ITEM: JERSEY</span>
+                </button>
+                <button id="menu-partner-btn" class="w-full border-[2.5px] border-white bg-transparent rounded-xl p-3 flex items-center gap-4 text-white font-bold text-sm tracking-widest hover:bg-white hover:text-cu-brown-dark transition-all cursor-pointer">
+                    <div class="w-8 flex justify-center"><i data-lucide="store" class="w-5 h-5"></i></div>
+                    <span>OUR PARTNER</span>
+                </button>
+            </nav>
+            <div class="mt-auto pb-2 text-center text-white/30 text-[11px] tracking-widest font-light">cUtems COMMUNITY</div>
+        </div>
+
+        <div class="flex-grow overflow-y-auto hide-scroll flex flex-col">
+
+            <div id="home-page" class="flex flex-col p-7 min-h-full">
+                <header class="flex justify-between items-center w-full mb-10 pt-2">
+                    <button class="open-menu-trigger text-cu-brown-soft cursor-pointer p-1"><i data-lucide="menu" class="w-9 h-9" stroke-width="1.8"></i></button>
+                    <div class="w-[90px] h-auto mt-[-10px]"><img src="cuilogo.png" alt="Logo" class="w-full h-auto"></div>
+                </header>
+                <div class="flex flex-col items-center text-center">
+                    <h1 class="text-[38px] font-bold text-black mb-3 leading-none tracking-wider">CHULAITEMS</h1>
+                    <div class="text-cu-pink-dot text-[24px] mb-4 leading-none">♦</div>
+                    <p class="text-black text-[15px] font-medium leading-relaxed max-w-[280px] mb-5">Connecting Chula Lifestyles through everyday items</p>
+                    <p class="text-black text-base font-bold tracking-wide mb-10">จุฬาไอเทม รวมไอเทมที่ชาวจุฬาห้ามพลาด</p>
+                </div>
+                <div class="flex flex-col gap-6 w-full px-2 mb-8">
+                    <button id="go-to-discount-btn" class="w-full border-[3.8px] border-cu-brown-soft bg-white rounded-3xl p-6 flex justify-between items-center shadow-md hover:bg-pink-50/30 active:translate-y-0.5 transition-all group cursor-pointer">
+                        <span class="text-[24px] font-bold text-black text-left leading-[1.15] tracking-tight">Today's<br>Special Offer</span>
+                        <div class="text-cu-brown-soft group-hover:scale-105 transition-transform"><i data-lucide="ticket-percent" class="w-14 h-14" stroke-width="1.3"></i></div>
+                    </button>
+                    <button id="go-to-jersey-btn" class="w-full border-[3.8px] border-cu-brown-soft bg-white rounded-3xl p-6 flex justify-between items-center shadow-md hover:bg-pink-50/30 active:translate-y-0.5 transition-all group cursor-pointer">
+                        <span class="text-[24px] font-bold text-black text-left leading-[1.15] tracking-tight">Item: Jersey<br>Pre-Order Now</span>
+                        <div class="text-cu-brown-soft group-hover:scale-105 transition-transform"><i data-lucide="shopping-cart" class="w-14 h-14" stroke-width="1.3"></i></div>
+                    </button>
+                    <button id="go-to-partner-btn" class="w-full border-[3.8px] border-cu-brown-soft bg-white rounded-3xl p-6 flex justify-between items-center shadow-md hover:bg-pink-50/30 active:translate-y-0.5 transition-all group cursor-pointer">
+                        <span class="text-[24px] font-bold text-black text-left leading-[1.15] tracking-tight">Our Partner</span>
+                        <div class="text-cu-brown-soft group-hover:scale-105 transition-transform"><i data-lucide="store" class="w-14 h-14" stroke-width="1.3"></i></div>
+                    </button>
+                </div>
+                <div class="mt-auto pb-1 text-center text-xs text-gray-400 font-light">© 2026 CHULAITEMS. Designed by Chula Students.</div>
+            </div>
+
+            <div id="discount-page" class="flex flex-col p-7 min-h-full hidden">
+                <header class="flex justify-between items-center w-full mb-8 pt-2">
+                    <button class="open-menu-trigger text-cu-brown-soft cursor-pointer p-1"><i data-lucide="menu" class="w-9 h-9" stroke-width="1.8"></i></button>
+                    <div class="w-[90px] h-auto mt-[-10px]"><img src="cuilogo.png" alt="Logo" class="w-full h-auto"></div>
+                </header>
+                <div class="flex flex-col items-center text-center mb-5">
+                    <h1 class="text-[38px] font-bold text-black mb-3 leading-none tracking-wider">CHULAITEMS</h1>
+                    <div class="text-cu-pink-dot text-[24px] mb-4 leading-none">♦</div>
+                    <p class="text-black text-[13px] font-medium leading-relaxed max-w-[310px]">
+                        กรอกโค้ดหรือร่วมกิจกรรมเพื่อรับส่วนลดพิเศษ<br>เฉพาะเมื่อสั่งผ่านช่องทาง chulaitems เท่านั้น
+                    </p>
+                </div>
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="bg-cu-brown-dark text-white px-5 py-2 rounded-md font-bold text-[17px] tracking-wide">Today's Special Offer</div>
+                    <div class="text-cu-brown-dark"><i data-lucide="tags" class="w-7 h-7" stroke-width="2"></i></div>
+                </div>
+                <p class="text-center text-black text-[13px] font-bold mb-5">โค้ดสามารถใช้เป็นส่วนลดได้ทุกร้านใน chulaitems</p>
+                
+                <div class="w-full border-2 border-pink-200 bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm mb-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-[#745E6D]/10 text-cu-brown-dark p-2 rounded-xl"><i data-lucide="ticket" class="w-7 h-7"></i></div>
+                        <div class="text-left">
+                            <div class="text-[20px] font-bold text-black tracking-wide leading-tight">chulaitems5per</div>
+                            <div class="text-gray-500 text-xs mt-0.5">( ส่วนลด 5 % ไม่มีขั้นต่ำ )</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full border-2 border-pink-200 bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm mb-5">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-[#745E6D]/10 text-cu-brown-dark p-2 rounded-xl"><i data-lucide="ticket" class="w-7 h-7"></i></div>
+                        <div class="text-left">
+                            <div class="text-[20px] font-bold text-black tracking-wide leading-tight">chulaitems50dis</div>
+                            <div class="text-gray-500 text-xs mt-0.5">( ส่วนลด 50 บาท ขั้นต่ำ 800บาท )</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-start mb-4">
+                    <div class="bg-cu-brown-dark text-white px-6 py-1.5 rounded-md font-bold text-[15px]">dek 69 only !</div>
+                </div>
+
+                <div class="w-full border-2 border-pink-200 bg-white rounded-2xl p-4 flex items-center gap-4 shadow-sm mb-6">
+                    <div class="text-pink-400 flex-shrink-0"><i data-lucide="heart" class="w-14 h-14 fill-pink-400" stroke-width="1"></i></div>
+                    <div class="text-left leading-snug">
+                        <div class="text-[14px] font-bold text-gray-700">ส่งหลักฐานยืนยันสิทธิ์ tcas 69</div>
+                        <div class="text-[14px] font-bold text-gray-700">ที่ช่องทาง ig: Chulaitems</div>
+                        <div class="text-[14px] font-bold text-pink-500 mt-1">รับโค้ดส่วนลด 6% ไม่มีขั้นต่ำ</div>
+                    </div>
+                </div>
+                <div class="mt-auto pb-1 text-center text-xs text-gray-400 font-light">© 2026 CHULAITEMS</div>
+            </div>
+
+            <div id="jersey-page" class="flex flex-col p-7 min-h-full hidden">
+                <header class="flex justify-between items-center w-full mb-8 pt-2">
+                    <button class="open-menu-trigger text-cu-brown-soft cursor-pointer p-1"><i data-lucide="menu" class="w-9 h-9" stroke-width="1.8"></i></button>
+                    <div class="w-[90px] h-auto mt-[-10px]"><img src="cuilogo.png" alt="Logo" class="w-full h-auto"></div>
+                </header>
+                <div class="flex flex-col items-center text-center mb-6">
+                    <h1 class="text-[38px] font-bold text-black mb-3 leading-none tracking-wider">CHULAITEMS</h1>
+                    <div class="text-cu-pink-dot text-[24px] mb-4 leading-none">✿</div>
+                    <h2 class="text-black text-[22px] font-bold tracking-[0.1em]">ITEM: JERSEY</h2>
+                </div>
+
+                <div class="flex flex-col gap-6 w-full">
+                    <div class="w-full border-[3px] border-cu-brown-soft bg-white rounded-[25px] p-3.5 flex gap-4 shadow-md">
+                        <div class="w-[140px] h-[140px] bg-pink-50 rounded-xl overflow-hidden flex-shrink-0">
+                            <img src="jersey1.jpg" alt="Jersey" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex flex-col justify-center flex-grow">
+                            <div class="text-[15px] font-bold text-black mb-0.5 tracking-wide break-words uppercase leading-tight">itemstest</div>
+                            <div class="text-[19px] font-bold text-black mb-3">299฿</div>
+                            <div class="flex flex-col gap-2">
+                                <button onclick="openProductDetail('itemstest')" class="w-full bg-cu-pink-btn text-white text-[11px] font-bold py-1.5 rounded-full tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all cursor-pointer">More Details</button>
+                                <button onclick="openGoogleForm()" class="w-full bg-cu-brown-dark text-white text-[11px] font-bold py-1.5 rounded-full tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all cursor-pointer">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full border-[3px] border-cu-brown-soft bg-white rounded-[25px] p-3.5 flex gap-4 shadow-md">
+                        <div class="w-[140px] h-[140px] bg-pink-50 rounded-xl overflow-hidden flex-shrink-0">
+                            <img src="jersey2.jpg" alt="Jersey" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex flex-col justify-center flex-grow">
+                            <div class="text-[15px] font-bold text-black mb-0.5 tracking-wide break-words uppercase leading-tight">Hello</div>
+                            <div class="text-[19px] font-bold text-black mb-3">99฿</div>
+                            <div class="flex flex-col gap-2">
+                                <button onclick="openProductDetail('hello')" class="w-full bg-cu-pink-btn text-white text-[11px] font-bold py-1.5 rounded-full tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all cursor-pointer">More Details</button>
+                                <button onclick="openGoogleForm()" class="w-full bg-cu-brown-dark text-white text-[11px] font-bold py-1.5 rounded-full tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all cursor-pointer">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-auto pt-10 pb-1 text-center text-xs text-gray-400 font-light">© 2026 CHULAITEMS</div>
+            </div>
+
+            <div id="detail-page" class="flex flex-col p-7 min-h-full hidden">
+                <div class="w-full flex justify-start mb-2">
+                    <button onclick="goBackToItems()" class="flex items-center gap-1 text-gray-500 hover:text-black transition-all active:scale-95">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                        <span class="text-sm font-medium">back</span>
+                    </button>
+                </div>
+
+                <header class="flex justify-between items-center w-full mb-8 pt-2">
+                    <button class="open-menu-trigger text-cu-brown-soft cursor-pointer p-1"><i data-lucide="menu" class="w-9 h-9" stroke-width="1.8"></i></button>
+                    <div class="w-[90px] h-auto mt-[-10px]"><img src="cuilogo.png" alt="Logo" class="w-full h-auto"></div>
+                </header>
+
+                <div class="flex flex-col items-center text-center">
+                    <h1 id="detail-shop-title" class="text-[32px] font-bold text-black mb-6 uppercase tracking-wider"></h1>
+                    
+                    <div class="w-[280px] h-[280px] bg-pink-50 rounded-2xl shadow-sm mb-3 relative overflow-hidden group">
+                        <div id="slider-container" class="flex w-full h-full transition-transform duration-300 ease-out"></div>
+                        <button onclick="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 text-black p-1.5 rounded-full hover:bg-white active:scale-90 transition-all z-10">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 text-black p-1.5 rounded-full hover:bg-white active:scale-90 transition-all z-10">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <div id="slider-dots" class="flex justify-center gap-1.5 mb-5"></div>
+
+                    <h2 id="detail-collection-title" class="text-[26px] font-bold text-black mb-4 tracking-wide">collection: name</h2>
+                    <div id="detail-desc-box" class="flex flex-col items-center text-center gap-4 px-2 text-[14.5px] font-medium text-gray-700 leading-relaxed mb-8"></div>
+
+                    <button onclick="openGoogleForm()" class="w-full max-w-[320px] bg-cu-brown-dark text-white text-[16px] font-bold py-3.5 rounded-2xl tracking-widest uppercase shadow-md hover:opacity-95 active:translate-y-0.5 transition-all mt-2 cursor-pointer">
+                        ORDER NOW
+                    </button>
+                </div>
+                <div class="mt-auto pt-10 pb-1 text-center text-xs text-gray-400 font-light">© 2026 CHULAITEMS</div>
+            </div>
+
+            <div id="partner-page" class="flex flex-col p-7 min-h-full hidden">
+                <header class="flex justify-between items-center w-full mb-8 pt-2">
+                    <button class="open-menu-trigger text-cu-brown-soft cursor-pointer p-1"><i data-lucide="menu" class="w-9 h-9" stroke-width="1.8"></i></button>
+                    <div class="w-[90px] h-auto mt-[-10px]"><img src="cuilogo.png" alt="Logo" class="w-full h-auto"></div>
+                </header>
+                <div class="flex flex-col items-center text-center mb-6">
+                    <h1 class="text-[38px] font-bold text-black mb-3 leading-none tracking-wider">CHULAITEMS</h1>
+                    <div class="text-cu-pink-dot text-[24px] mb-4 leading-none">✿</div>
+                    <h2 class="text-black text-[22px] font-bold tracking-[0.1em] uppercase">OUR PARTNER</h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-6 gap-y-8 w-full px-4 mt-4">
+                    <div class="flex flex-col items-center">
+                        <div class="w-[145px] h-[145px] rounded-none overflow-hidden shadow-sm bg-[#00A699] flex justify-center items-center">
+                            <img src="a.png" alt="Partner" class="w-full h-auto object-contain">
+                        </div>
+                        <span class="text-[17px] font-bold text-black mt-2 tracking-wide uppercase">A shop</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-[145px] h-[145px] rounded-none overflow-hidden shadow-sm bg-[#ED1C24] flex justify-center items-center">
+                            <img src="b.png" alt="Partner" class="w-full h-auto object-contain">
+                        </div>
+                        <span class="text-[17px] font-bold text-black mt-2 tracking-wide uppercase">B shop</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-[145px] h-[145px] rounded-none overflow-hidden shadow-sm bg-[#00A699] flex justify-center items-center">
+                            <img src="c.png" alt="Partner" class="w-full h-auto object-contain">
+                        </div>
+                        <span class="text-[17px] font-bold text-black mt-2 tracking-wide uppercase">C shop</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-[145px] h-[145px] rounded-none overflow-hidden shadow-sm bg-[#ED1C24] flex justify-center items-center">
+                            <img src="d.png" alt="Partner" class="w-full h-auto object-contain">
+                        </div>
+                        <span class="text-[17px] font-bold text-black mt-2 tracking-wide uppercase">D shop</span>
+                    </div>
+                </div>
+                <div class="mt-auto pt-10 pb-1 text-center text-xs text-gray-400 font-light">© 2026 CHULAITEMS</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // คลังข้อความและข้อมูลสินค้า
+        const productData = {
+            itemstest: {
+                shopTitle: "ITEMS TEST SHOP",
+                images: ["cuitest1.jpg", "cuitest2.jpg", "cuitest3.jpg"],
+                collection: "heading",
+                description: `
+                    <p>product describtion1</p>
+                    <p class="flex items-center justify-center gap-1">product describtion2</p>
+                    <p class="font-bold text-black mt-2">product title1</p>
+                    <p class="mt-1">product description3</p>
+                    <p class="mt-2 text-sm text-gray-500 font-normal">product description4</p>
+                `
+            },
+            hello: {
+                shopTitle: "hello SHOP",
+                images: ["jersey2.jpg", "jersey2_2.jpg", "jersey2_3.jpg"],
+                collection: "collection: basic sweet",
+                description: `
+                    <p>first collection : ✨✨✨✨✨</p>
+                    <p class="flex items-center justify-center gap-1">♡ Simple but special. Comfortable for your everyday look.</p>
+                    <p class="font-bold text-black mt-2">ෆ 99 ฿เท่านั้น ราคาปังที่สุดในสามโลก</p>
+                    <p class="mt-1">★ normal collection ★</p>
+                    <p class="mt-2 text-sm text-gray-500 font-normal">order now : direct message ig ❀</p>
+                `
+            }
+        };
+
+        // ฟังก์ชันสำหรับลิ้งก์ไป Google Form ของนท
+        const openGoogleForm = () => {
+            const formUrl = "https://forms.google.com"; 
+            window.open(formUrl, '_blank');
+        };
+
+        // รวมรายชื่อหน้าจอทั้งหมดในระบบเว็บ
+        const pages = {
+            home: document.getElementById('home-page'),
+            discount: document.getElementById('discount-page'),
+            jersey: document.getElementById('jersey-page'),
+            detail: document.getElementById('detail-page'),
+            partner: document.getElementById('partner-page') // เพิ่มหน้า partner เข้ามาในระบบควบคุม
+        };
+
+        const body = document.body;
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        const showPage = (pageName) => {
+            Object.values(pages).forEach(p => p.classList.add('hidden'));
+            pages[pageName].classList.remove('hidden');
+            closeMenu();
+        };
+
+        // 🔄 ระบบตรรกะควบคุม Slider รูปภาพ
+let currentSlideIndex = 0;
+let totalSlides = 0;
+
+const updateSliderPosition = () => {
+    const container = document.getElementById('slider-container');
+    container.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+    
+    // อัปเดตสีจุดกลม ๆ
+    const dots = document.querySelectorAll('.slider-dot');
+    dots.forEach((dot, index) => {
+        if (index === currentSlideIndex) {
+            dot.classList.replace('bg-gray-300', 'bg-cu-brown-dark');
+        } else {
+            dot.classList.replace('bg-cu-brown-dark', 'bg-gray-300');
+        }
+    });
+};
+
+const nextSlide = () => {
+    if (currentSlideIndex < totalSlides - 1) currentSlideIndex++;
+    else currentSlideIndex = 0; // วนกลับรูปแรก
+    updateSliderPosition();
+};
+
+const prevSlide = () => {
+    if (currentSlideIndex > 0) currentSlideIndex--;
+    else currentSlideIndex = totalSlides - 1; // วนไปรูปสุดท้าย
+    updateSliderPosition();
+};
+
+//  ลบฟังก์ชัน openProductDetail อันเดิมออก แล้วแทนด้วยอันนี้
+const openProductDetail = (productId) => {
+    const data = productData[productId];
+    if (!data) return;
+
+    document.getElementById('detail-shop-title').innerText = data.shopTitle;
+    document.getElementById('detail-collection-title').innerText = data.collection;
+    document.getElementById('detail-desc-box').innerHTML = data.description;
+
+    const container = document.getElementById('slider-container');
+    const dotsContainer = document.getElementById('slider-dots');
+    container.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    
+    currentSlideIndex = 0;
+    totalSlides = data.images.length;
+
+    // ลูปสร้างแท็กรูปภาพตามจำนวนที่มีในอาร์เรย์
+    data.images.forEach((imgUrl, index) => {
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'w-full h-full flex-shrink-0';
+        imgDiv.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover">`;
+        container.appendChild(imgDiv);
+
+        const dot = document.createElement('button');
+        dot.className = `slider-dot w-2 h-2 rounded-full transition-all ${index === 0 ? 'bg-cu-brown-dark' : 'bg-gray-300'}`;
+        dot.onclick = () => { currentSlideIndex = index; updateSliderPosition(); };
+        dotsContainer.appendChild(dot);
+    });
+
+    // เปิดระบบรูดปัดหน้าจอขยับรูปบนมือถือ (Swipe)
+    setupSwipe();
+    updateSliderPosition();
+    showPage('detail');
+};
+
+// ฟังก์ชันรูดปัดนิ้วบนจอ
+let touchStartX = 0;
+let touchEndX = 0;
+const setupSwipe = () => {
+    const sliderZone = document.getElementById('slider-container').parentElement;
+    sliderZone.ontouchstart = e => { touchStartX = e.changedTouches[0].screenX; };
+    sliderZone.ontouchend = e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) nextSlide();
+        if (touchEndX - touchStartX > 50) prevSlide();
+    };
+};
+
+        const openMenu = () => {
+            body.classList.replace('menu-closed', 'menu-open');
+            menuOverlay.classList.remove('hidden');
+            setTimeout(() => menuOverlay.classList.add('opacity-100'), 10);
+        };
+
+        const closeMenu = () => {
+            body.classList.replace('menu-open', 'menu-closed');
+            menuOverlay.classList.remove('opacity-100');
+            setTimeout(() => { if(body.classList.contains('menu-closed')) menuOverlay.classList.add('hidden') }, 350);
+        };
+
+        const goBackToItems = () => {
+            document.getElementById('detail-page').classList.add('hidden');
+    
+    // เปิดหน้าหลักหรือหน้าแสดงสินค้าที่เคยเปิดค้างไว้ (แก้ไขไอดีเป็นหน้าหลักของนท เช่น 'main-page' หรือ 'partner-page')
+            document.getElementById('jersey-page').classList.remove('hidden'); 
+    
+    // โค้ดส่วนนี้จะช่วยคงตำแหน่งเลื่อน (Scroll Position) เดิมบนหน้าจอไว้ให้ ไม่เด้งไปบนสุดครับ
+        };
+
+        document.querySelectorAll('.open-menu-trigger').forEach(b => b.addEventListener('click', openMenu));
+        document.getElementById('close-menu-btn').addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // คำสั่งสลับหน้าเมื่อคลิกเมนูสามขีดด้านข้าง
+        document.getElementById('menu-home-btn').addEventListener('click', () => showPage('home'));
+        document.getElementById('menu-discount-btn').addEventListener('click', () => showPage('discount'));
+        document.getElementById('menu-jersey-btn').addEventListener('click', () => showPage('jersey'));
+        document.getElementById('menu-partner-btn').addEventListener('click', () => showPage('partner')); // กด Our Partner จากสามขีด
+        
+        // คำสั่งสลับหน้าเมื่อคลิกจากปุ่มหน้าแรกใหญ่ ๆ
+        document.getElementById('go-to-discount-btn').addEventListener('click', () => showPage('discount'));
+        document.getElementById('go-to-jersey-btn').addEventListener('click', () => showPage('jersey'));
+        document.getElementById('go-to-partner-btn').addEventListener('click', () => showPage('partner')); // กด Our Partner จากปุ่มหน้าแรก
+    </script>
+</body>
+</html>
